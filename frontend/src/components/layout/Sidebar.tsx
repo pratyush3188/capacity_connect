@@ -65,6 +65,8 @@ export const Sidebar: React.FC = () => {
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="h-4 w-4" /> },
     { id: 'users', label: 'User Directory', icon: <Users className="h-4 w-4" /> },
     { id: 'trainees', label: 'Trainees', icon: <GraduationCap className="h-4 w-4" /> },
+    { id: 'competency-framework', label: 'Competency Framework', icon: <Target className="h-4 w-4" /> },
+    { id: 'competencies', label: 'Competency Analytics', icon: <BrainCircuit className="h-4 w-4" /> },
     { id: 'trainers', label: 'Trainers & AI Matcher', icon: <UserCheck className="h-4 w-4" />, badge: 'AI Match' },
     { id: 'courses', label: 'Course Management', icon: <BookOpen className="h-4 w-4" /> },
     { id: 'training-analytics', label: 'Training Analytics', icon: <BarChart3 className="h-4 w-4" /> },
@@ -88,7 +90,7 @@ export const Sidebar: React.FC = () => {
             <div className="flex items-center gap-2">
               <Building className="h-4 w-4 text-cyan-400" />
               <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                {role.toUpperCase()} PORTAL
+                {(role || 'trainee').toUpperCase()} PORTAL
               </span>
             </div>
           </div>

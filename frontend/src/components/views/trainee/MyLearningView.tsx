@@ -55,14 +55,12 @@ export const MyLearningView: React.FC = () => {
             progress: c.progress ?? e.progressPercentage ?? 0,
             competenciesCovered: c.competenciesCovered || [],
             prerequisites: c.prerequisites || [],
-            modules: (c.modules || []).map((m: any) => ({
-              id: m._id || m.id,
-              title: m.title,
-              duration: m.duration,
-              contentType: m.contentType || 'video',
-              isCompleted: m.isCompleted || false
-            }))
-          };
+            modules: c.modules || [],
+            trainerId: c.trainerId || 'trainer-1',
+            completionRate: c.completionRate || 0,
+            reviewCount: c.reviewCount || 0,
+            resourcesCount: c.resourcesCount || 0
+          } as Course;
         });
 
         setEnrolledCourses(mappedCourses);
@@ -278,8 +276,8 @@ export const MyLearningView: React.FC = () => {
               </div>
               
               <div className="flex-1 overflow-y-auto p-3 space-y-2">
-                {activeCourse.modules?.length > 0 ? (
-                  activeCourse.modules.map((mod: any, idx: number) => (
+                {(activeCourse.modules?.length || 0) > 0 ? (
+                  activeCourse.modules!.map((mod: any, idx: number) => (
                     <div 
                       key={mod.id || idx} 
                       className={`flex gap-3 p-3 rounded-lg border cursor-pointer transition-all ${idx === 0 ? 'bg-cyan-900/30 border-cyan-500/50' : 'bg-slate-950 border-slate-800 hover:bg-slate-800'}`}

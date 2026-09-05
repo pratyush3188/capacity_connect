@@ -69,8 +69,8 @@ export const AdminDashboardView: React.FC = () => {
       <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
         <StatCard
           title="Total Trainees"
-          value={data?.totalTrainees || 485}
-          subtitle="4 Active Divisions"
+          value={data?.totalTrainees ?? 0}
+          subtitle="Active Learner Pool"
           change="+12% YoY"
           changeType="positive"
           icon={<GraduationCap className="h-4 w-4" />}
@@ -78,41 +78,41 @@ export const AdminDashboardView: React.FC = () => {
         />
         <StatCard
           title="Total Trainers"
-          value={data?.totalTrainers || 32}
-          subtitle="WMO Certified"
-          change="+3 new"
+          value={data?.totalTrainers ?? 0}
+          subtitle="Registered Faculty"
+          change="Updated"
           changeType="positive"
           icon={<UserCheck className="h-4 w-4" />}
           accentColor="emerald"
         />
         <StatCard
           title="Active Courses"
-          value={data?.activeCourses || 18}
-          subtitle="6 Pending Approval"
-          change="Catalog Expanding"
+          value={data?.activeCourses ?? 0}
+          subtitle="Catalog"
+          change="Expanding"
           changeType="positive"
           icon={<BookOpen className="h-4 w-4" />}
           accentColor="blue"
         />
         <StatCard
           title="Completed Courses"
-          value={data?.completedCourses || 142}
+          value={data?.completedCourses ?? 0}
           subtitle="Batch 2025-26"
-          change="92% Completion"
+          change="Tracked"
           changeType="positive"
           icon={<CheckCircle2 className="h-4 w-4" />}
           accentColor="purple"
         />
         <StatCard
           title="Total Certifications"
-          value={data?.totalCertifications || 620}
-          subtitle="IMD Standard"
+          value={data?.totalCertifications ?? 0}
+          subtitle="Issued"
           icon={<Award className="h-4 w-4" />}
           accentColor="amber"
         />
         <StatCard
           title="Pending Audits"
-          value={data?.pendingAssessments || 24}
+          value={data?.pendingAssessments ?? 0}
           subtitle="Requires Review"
           change="Action Req"
           changeType="negative"

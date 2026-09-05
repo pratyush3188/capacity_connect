@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "nodemon --exec tsx src/server.ts",
+    "dev": "nodemon --exec npx tsx src/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed:courses": "tsx src/scripts/seedCourses.ts"

@@ -37,6 +37,7 @@ import { AssessmentCertManagementView } from './components/views/admin/Assessmen
 import { AnnouncementsView } from './components/views/admin/AnnouncementsView';
 import { ReportsView } from './components/views/admin/ReportsView';
 import { SettingsView } from './components/views/admin/SettingsView';
+import { AdminCompetencyManagementView } from './components/views/admin/AdminCompetencyManagementView';
 
 import { CheckCircle2 } from 'lucide-react';
 
@@ -86,6 +87,7 @@ const MainLayout: React.FC = () => {
         case 'trainees': return <AdminTraineeManagementView />;
         case 'trainers': return <AdminTrainerManagementView />;
         case 'courses': return <AdminCourseManagementView />;
+        case 'competency-framework': return <AdminCompetencyManagementView />;
         case 'competencies': return <CompetencyAnalyticsView />;
         case 'training-analytics': return <TrainingAnalyticsView />;
         case 'assessments': return <AssessmentCertManagementView />;

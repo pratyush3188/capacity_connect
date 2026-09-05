@@ -17,7 +17,8 @@ import { UserRole } from '../../types';
 import logoImg from '../../assets/logo.png';
 
 export const Header: React.FC = () => {
-  const { user, role, switchRole, logout } = useAuth();
+  const { user, role, logout } = useAuth();
+  const safeRole = role || 'trainee';
   const { notifications, unreadCount, markNotificationAsRead, searchQuery, setSearchQuery, sidebarOpen, setSidebarOpen, theme, toggleTheme, showToast } = useApp();
 
   const [showNotifications, setShowNotifications] = useState(false);
@@ -28,17 +29,14 @@ export const Header: React.FC = () => {
     trainer: <BookOpen className="h-4 w-4 text-emerald-400" />,
     admin: <Shield className="h-4 w-4 text-purple-400" />
   };
-
+  
   const roleColors = {
     trainee: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
     trainer: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
     admin: 'bg-purple-500/10 text-purple-400 border-purple-500/30'
   };
 
-  const handleRoleSwitch = (newRole: UserRole) => {
-    switchRole(newRole);
-    showToast(`Switched role view to ${newRole.toUpperCase()}`);
-  };
+
 
   return (
     <header className="sticky top-0 z-40 flex h-20 w-full items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 backdrop-blur-md lg:px-6">
@@ -74,23 +72,7 @@ export const Header: React.FC = () => {
           />
         </div>
 
-        {/* Quick Role Switcher Bar */}
-        <div className="flex items-center rounded-lg border border-slate-800 bg-slate-900/90 p-1">
-          {(['trainee', 'trainer', 'admin'] as UserRole[]).map((r) => (
-            <button
-              key={r}
-              onClick={() => handleRoleSwitch(r)}
-              className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold capitalize transition-all ${
-                role === r
-                  ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              {roleIcons[r]}
-              <span>{r}</span>
-            </button>
-          ))}
-        </div>
+
       </div>
 
       {/* Right Controls */}
@@ -179,9 +161,9 @@ export const Header: React.FC = () => {
               <div className="px-3 py-2 border-b border-slate-800">
                 <p className="text-xs font-semibold text-white">{user?.name}</p>
                 <p className="text-[10px] text-slate-400 truncate">{user?.email}</p>
-                <div className={`mt-1.5 inline-flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-semibold uppercase ${roleColors[role]}`}>
-                  {roleIcons[role]}
-                  <span>{role}</span>
+                <div className={`mt-1.5 inline-flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-semibold uppercase ${roleColors[safeRole]}`}>
+                  {roleIcons[safeRole]}
+                  <span>{safeRole}</span>
                 </div>
               </div>
 
@@ -201,26 +183,7 @@ export const Header: React.FC = () => {
                 </button>
               </div>
 
-              {/* Mobile Quick Role Switch */}
-              <div className="p-2 md:hidden border-b border-slate-800">
-                <span className="text-[10px] text-slate-400 font-semibold uppercase block mb-1">Switch Role</span>
-                <div className="flex gap-1">
-                  {(['trainee', 'trainer', 'admin'] as UserRole[]).map((r) => (
-                    <button
-                      key={r}
-                      onClick={() => {
-                        handleRoleSwitch(r);
-                        setShowUserMenu(false);
-                      }}
-                      className={`flex-1 py-1 text-[10px] font-semibold rounded capitalize ${
-                        role === r ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-slate-800 text-slate-400'
-                      }`}
-                    >
-                      {r}
-                    </button>
-                  ))}
-                </div>
-              </div>
+
 
               <button
                 onClick={logout}

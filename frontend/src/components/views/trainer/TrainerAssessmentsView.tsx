@@ -121,7 +121,7 @@ export const TrainerAssessmentsView: React.FC = () => {
   // Delete question
   const handleDeleteQuestion = async (questionId: string) => {
     try {
-      await courseService.deleteQuestion(questionId);
+      await courseService.deleteAssessmentQuestion(questionId);
       setEditQuestions(prev => prev.filter(q => q._id !== questionId));
       showToast('Question deleted');
     } catch (err: any) {

@@ -127,3 +127,29 @@ export const getTrainerTrainees = async (req: AuthRequest, res: Response, next: 
     next(error);
   }
 };
+
+export const updateTrainerProfile = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  try {
+    const { qualification, experienceYears, skills, certifications, department, designation } = req.body;
+    const userId = req.user?.userId;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        $set: {
+          qualification,
+          experienceYears,
+          skills,
+          certifications,
+          department,
+          designation
+        }
+      },
+      { new: true }
+    ).select('-passwordHash');
+
+    res.json({ success: true, data: updatedUser });
+  } catch (error) {
+    next(error);
+  }
+};

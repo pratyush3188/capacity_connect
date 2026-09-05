@@ -73,8 +73,13 @@ export const TraineeDashboardView: React.FC = () => {
       status: c.status || 'published',
       progress: e.progressPercentage || 0,
       competenciesCovered: c.competenciesCovered || [],
-      prerequisites: c.prerequisites || []
-    };
+      prerequisites: c.prerequisites || [],
+      modules: c.modules || [],
+      trainerId: c.trainerId?._id || 'trainer-1',
+      completionRate: c.completionRate || 0,
+      reviewCount: c.reviewCount || 0,
+      resourcesCount: c.resourcesCount || 0
+    } as Course;
   });
 
   const pendingAssessments = dashboardData?.assessments || [];

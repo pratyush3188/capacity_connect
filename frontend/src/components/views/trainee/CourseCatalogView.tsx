@@ -226,7 +226,7 @@ export const CourseCatalogView: React.FC = () => {
                 <img src={modalCourse.thumbnail} alt={modalCourse.title} className="h-full w-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/20 to-transparent"></div>
                 <div className="absolute bottom-4 left-4">
-                  <Badge variant="cyan" className="mb-2">{modalCourse.difficulty}</Badge>
+                  <div className="mb-2"><Badge variant="cyan">{modalCourse.difficulty}</Badge></div>
                   <h2 className="text-xl font-bold text-white drop-shadow-md">{modalCourse.title}</h2>
                 </div>
               </div>

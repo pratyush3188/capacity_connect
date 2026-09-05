@@ -19,23 +19,14 @@ export const analyticsService = {
       totalTrainees: data.totalTrainees,
       totalTrainers: data.totalTrainers,
       activeCourses: data.totalCourses,
-      completedCourses: data.activeLearners, // Mapping logic
-      totalCertifications: 620, // Fallback
-      pendingAssessments: 24, // Fallback
-      monthlyEnrollments: [
-        { month: 'Mar', enrollments: 65, completions: 42 },
-        { month: 'Apr', enrollments: 82, completions: 58 },
-        { month: 'May', enrollments: 110, completions: 75 },
-        { month: 'Jun', enrollments: 95, completions: 80 },
-        { month: 'Jul', enrollments: 130, completions: 92 },
-        { month: 'Aug', enrollments: 145, completions: 105 }
+      completedCourses: data.completedCourses || 0,
+      totalCertifications: data.totalCertifications || 0,
+      pendingAssessments: data.pendingAssessments || 0,
+      monthlyEnrollments: data.monthlyEnrollments?.length ? data.monthlyEnrollments : [
+        { month: 'Current', enrollments: 0, completions: 0 }
       ],
-      performanceByDepartment: [
-        { department: 'Severe Weather & Radar', avgScore: 84, participationRate: 92 },
-        { department: 'Numerical Modeling', avgScore: 79, participationRate: 88 },
-        { department: 'Satellite Operations', avgScore: 88, participationRate: 95 },
-        { department: 'Climate & Monsoon', avgScore: 91, participationRate: 85 },
-        { department: 'IT & Infrastructure', avgScore: 82, participationRate: 90 }
+      performanceByDepartment: data.performanceByDepartment?.length ? data.performanceByDepartment : [
+        { department: 'General', avgScore: 0, participationRate: 0 }
       ]
     };
   },

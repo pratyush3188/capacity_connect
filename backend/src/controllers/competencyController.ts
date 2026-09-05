@@ -71,14 +71,9 @@ export const getMyCompetencies = async (req: AuthRequest, res: Response, next: N
 
     const formatted = [];
     for (const comp of allCompetencies) {
-      // Find required level from course created by admin
-      const course = publishedCourses.find((c) =>
-        c.competenciesCovered.some((cc) => cc.toLowerCase() === comp.name.toLowerCase())
-      );
-      const requiredLevel = course?.requiredLevel || 4;
-
       const uc = userCompMap.get(comp._id.toString());
       const currentLevel = uc ? uc.currentLevel : 0;
+      const requiredLevel = uc?.requiredLevel || comp.globalRequiredLevel || 3;
       const gap = Math.max(0, requiredLevel - currentLevel);
 
       formatted.push({
@@ -115,13 +110,9 @@ export const getMySkillGaps = async (req: AuthRequest, res: Response, next: Next
     const gaps = [];
 
     for (const comp of allCompetencies) {
-      const course = publishedCourses.find((c) =>
-        c.competenciesCovered.some((cc) => cc.toLowerCase() === comp.name.toLowerCase())
-      );
-      const requiredLevel = course?.requiredLevel || 4;
-
       const uc = userCompMap.get(comp._id.toString());
       const currentLevel = uc ? uc.currentLevel : 0;
+      const requiredLevel = uc?.requiredLevel || comp.globalRequiredLevel || 3;
       const gap = requiredLevel - currentLevel;
 
       if (gap > 0) {

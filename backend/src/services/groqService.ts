@@ -22,7 +22,7 @@ export const generateTrainerMatchExplanation = async (trainerData: any, criteria
 
     const chatCompletion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'openai/gpt-oss-20b',
+      model: 'llama-3.1-8b-instant',
     });
 
     return chatCompletion.choices[0]?.message?.content || 'Matched successfully.';

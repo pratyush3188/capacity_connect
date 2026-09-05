@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { MOCK_TRAINER_MATCHES } from '../../../services/mockData';
 import { Badge } from '../../common/Badge';
 import { useApp } from '../../../context/AppContext';
 import { trainerService } from '../../../services/api/trainerService';
@@ -12,7 +11,7 @@ export const AdminTrainerManagementView: React.FC = () => {
   const [subject, setSubject] = useState<string>('Radar Meteorology');
   const [requiredCompetency, setRequiredCompetency] = useState<string>('Radar Meteorology & Doppler Interpretation');
   const [targetCourse, setTargetCourse] = useState<string>('MET-401 Advanced Doppler Radar');
-  const [matchedTrainers, setMatchedTrainers] = useState<TrainerMatchResult[]>(MOCK_TRAINER_MATCHES);
+  const [matchedTrainers, setMatchedTrainers] = useState<TrainerMatchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
   const handleMatch = async (e: React.FormEvent) => {

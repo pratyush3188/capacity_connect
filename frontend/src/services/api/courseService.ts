@@ -21,8 +21,12 @@ export const courseService = {
       progress: c.progress || 0,
       competenciesCovered: c.competenciesCovered || [],
       prerequisites: c.prerequisites || [],
-      modules: c.modules || []
-    }));
+      modules: c.modules || [],
+      trainerId: c.trainerId?._id || c.trainerId || 'trainer-1',
+      completionRate: c.completionRate || 0,
+      reviewCount: c.reviewCount || 0,
+      resourcesCount: c.resourcesCount || 0
+    } as Course));
   },
 
   async getCourseById(id: string): Promise<Course | undefined> {
@@ -45,8 +49,12 @@ export const courseService = {
       progress: c.progress || 0,
       competenciesCovered: c.competenciesCovered || [],
       prerequisites: c.prerequisites || [],
-      modules: c.modules || []
-    };
+      modules: c.modules || [],
+      trainerId: c.trainerId?._id || c.trainerId || 'trainer-1',
+      completionRate: c.completionRate || 0,
+      reviewCount: c.reviewCount || 0,
+      resourcesCount: c.resourcesCount || 0
+    } as Course;
   },
 
   async createCourse(newCourseData: Partial<Course>): Promise<Course> {
